@@ -1,11 +1,11 @@
-function sendRequest() {
-  var request = new XMLHttpRequest(), key = '4tkqp56p8riaa8nvg50n1b5xjqzt1mx', url = 'https://api.twitch.tv/kraken/streams/featured';
+function sendRequest(url) {
+  var request = new XMLHttpRequest(), key = '4tkqp56p8riaa8nvg50n1b5xjqzt1mx';
   request.open('GET', url, true);
   request.setRequestHeader("Client-ID", key);
   request.onload = function() {
     if (this.status >= 200 && this.status < 400) {
       // Success!
-      var data = JSON.parse(this.response).featured;
+      var data = JSON.parse(this.response);
       console.log(data);
       createList(data);
     } else {
@@ -21,10 +21,9 @@ function sendRequest() {
 
   request.send();
 }
-sendRequest();
 
 function createList(arr) {
-  var outputList = document.getElementById('output');
+  var outputList = document.getElementById('output'), arr = arr.featured;
   for (var i = 0, l = arr.length; i < l; i++) {
     var current = arr[i];
     var listitem = document.createElement('li'), title = document.createElement('h5'), div = document.createElement('div'), link = document.createElement('a');
@@ -39,3 +38,10 @@ function createList(arr) {
     outputList.appendChild(listitem);
   }
 }
+function featuredChannels() {
+  sendRequest('https://api.twitch.tv/kraken/streams/featured');
+}
+// function specificChannels() {
+//   sendRequest('https://api.twitch.tv/kraken/streams/freecodecamp');
+// }
+// specificChannels();
