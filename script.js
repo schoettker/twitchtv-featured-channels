@@ -1,4 +1,4 @@
-function sendRequest(url) {
+function sendRequest(url, handleData) {
   var request = new XMLHttpRequest(), key = '4tkqp56p8riaa8nvg50n1b5xjqzt1mx';
   request.open('GET', url, true);
   request.setRequestHeader("Client-ID", key);
@@ -7,7 +7,7 @@ function sendRequest(url) {
       // Success!
       var data = JSON.parse(this.response);
       console.log(data);
-      createList(data);
+      handleData(data);
     } else {
       // We reached our target server, but it returned an error
       console.log("error");
@@ -26,7 +26,9 @@ function createList(arr) {
   var outputList = document.getElementById('output'), arr = arr.featured;
   for (var i = 0, l = arr.length; i < l; i++) {
     var current = arr[i];
+    // required DOM Elements
     var listitem = document.createElement('li'), title = document.createElement('h5'), div = document.createElement('div'), link = document.createElement('a');
+
     title.appendChild(document.createTextNode(current.title));
     div.classList.add('channel-description');
     div.innerHTML = current.text;
@@ -39,8 +41,9 @@ function createList(arr) {
   }
 }
 function featuredChannels() {
-  sendRequest('https://api.twitch.tv/kraken/streams/featured');
+  sendRequest('https://api.twitch.tv/kraken/streams/featured', createList);
 }
+featuredChannels();
 // function specificChannels() {
 //   sendRequest('https://api.twitch.tv/kraken/streams/freecodecamp');
 // }
