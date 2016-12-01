@@ -7,7 +7,7 @@ function sendRequest(url, handleData, type, channelName) {
       // Success!
       var data = JSON.parse(this.response);
       console.log(data);
-      handleData(data, type);
+      handleData(data, type, channelName);
     } else {
       // We reached our target server, but it returned an error
       console.log("error");
@@ -31,7 +31,7 @@ function sendRequest(url, handleData, type, channelName) {
   request.send();
 }
 
-function createListItem(obj, type) {
+function createListItem(obj, type, channelName) {
   var outputList = document.getElementById('output');
   function featured(obj) {
     var listitem = document.createElement('li'), title = document.createElement('h5'), div = document.createElement('div'), link = document.createElement('a');
@@ -45,16 +45,21 @@ function createListItem(obj, type) {
     listitem.appendChild(link);
     outputList.appendChild(listitem);
   }
-  function specific(obj) {
+  function specific(obj, channelName) {
     var listitem = document.createElement('li'), title = document.createElement('h5'), div = document.createElement('div'), link = document.createElement('a');
-    title.appendChild(document.createTextNode(obj.stream.channel.name));
-    div.appendChild(document.createTextNode(obj.stream.channel.status));
     div.classList.add('channel-description');
     // div.innerHTML = obj.text;
     link.appendChild(title);
     link.appendChild(div);
-    link.setAttribute('href', obj.stream.channel.url);
-    link.setAttribute('target', 'blank');
+    if (obj.stream == null) {
+      title.appendChild(document.createTextNode(channelName + ' is offline'));
+      div.appendChild(document.createTextNode('The stream is currently offline but you might want to check back later :)'));
+    } else {
+      title.appendChild(document.createTextNode(obj.stream.channel.name));
+      div.appendChild(document.createTextNode(obj.stream.channel.status));
+      link.setAttribute('href', obj.stream.channel.url);
+      link.setAttribute('target', 'blank');
+    }
     listitem.appendChild(link);
     outputList.appendChild(listitem);
 
@@ -66,18 +71,18 @@ function createListItem(obj, type) {
       featured(v);
     }
   } else if (type == 'specific') {
-    specific(obj);
+    specific(obj, channelName);
   }
 
 }
 function featuredChannels() {
   sendRequest('https://api.twitch.tv/kraken/streams/featured', createListItem, 'featured');
 }
-// featuredChannels();
 function specificChannels(streamNames) {
   streamNames.forEach(function(stream) {
     sendRequest('https://api.twitch.tv/kraken/streams/' + stream, createListItem, "specific", stream);
   });
 }
 var streamNames = ['imaqtpie', 'DominGo', 'overpow', 'dfs84382dfsfs', 'freecodecamp'];
+featuredChannels();
 specificChannels(streamNames);
