@@ -85,9 +85,11 @@ function specificChannels(streamNames) {
 }
 
 document.getElementById('featured').addEventListener('click', function(event) {
+  document.getElementById('output').innerHTML = null;
   featuredChannels();
 });
 document.getElementById('regular').addEventListener('click', function(event) {
-  var streamNames = ['imaqtpie', 'DominGo', 'overpow', 'dfs84382dfsfs', 'freecodecamp'];
+  document.getElementById('output').innerHTML = null;
+  var streamNames = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
   specificChannels(streamNames);
 });
