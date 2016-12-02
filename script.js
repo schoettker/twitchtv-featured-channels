@@ -14,7 +14,7 @@ function sendRequest(url, handleData, type, channelName) {
       var outputList = document.getElementById('output');
       var listitem = document.createElement('li'), title = document.createElement('h5'), div = document.createElement('div');
       title.appendChild(document.createTextNode('Channel ' + channelName + ' not found ;('));
-      div.appendChild(document.createTextNode('The channel is offline or does not exist'));
+      div.appendChild(document.createTextNode('The channel does not exist'));
       div.classList.add('channel-description');
       // div.innerHTML = obj.text;
       listitem.appendChild(title);
