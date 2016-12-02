@@ -1,0 +1,77 @@
+body {
+  background: #17141F;
+  font-family: Helvetica Neue,Helvetica,sans-serif;
+  color: rgb(50, 47, 55);
+}
+.container {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+h1 {
+  color: white;
+}
+.btn-grp button {
+  color: rgb(112, 106, 124);
+  font-family: Helvetica Neue,Helvetica,sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+  white-space: pre;
+  text-shadow: none;
+  background-color: white;
+  padding: .5em 1em;
+  border-radius: 2px;
+  border: none;
+  transition: .6s;
+  outline: 0;
+  /* border: 9px 14px 11px; */
+}
+.btn-grp button:hover ,
+.btn-grp button:active ,
+.btn-grp button:focus {
+  color: white;
+  background-color: rgb(125, 91, 190);
+  cursor: pointer;
+}
+::-moz-focus-inner {
+  border: 0;
+}
+.active {
+ul {
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+li {
+  background: white;
+  margin: 1em auto; 
+  max-width: 600px;
+  padding: 1em;
+  cursor: pointer;
+  transition: .6s;
+}
+li:hover {
+  background-color: rgb(125, 91, 190);
+}
+li:hover a,
+li:hover .channel-description,
+li:hover h5 {
+  color: white;
+}
+a {
+  transition: .6s;
+  text-decoration: none;
+  color: rgb(50, 47, 55);
+}
+h5 {
+  margin-top: .5em;
+  transition: .6s;
+  margin-bottom: 0;
+  font-size: 1.25em;
+}
+.channel-description {
+  transition: .6s;
+  margin-top: .5em;
+  color: rgb(112, 106, 124);
+}
