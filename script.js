@@ -83,6 +83,11 @@ function specificChannels(streamNames) {
     sendRequest('https://api.twitch.tv/kraken/streams/' + stream, createListItem, "specific", stream);
   });
 }
-var streamNames = ['imaqtpie', 'DominGo', 'overpow', 'dfs84382dfsfs', 'freecodecamp'];
-featuredChannels();
-specificChannels(streamNames);
+
+document.getElementById('featured').addEventListener('click', function(event) {
+  featuredChannels();
+});
+document.getElementById('regular').addEventListener('click', function(event) {
+  var streamNames = ['imaqtpie', 'DominGo', 'overpow', 'dfs84382dfsfs', 'freecodecamp'];
+  specificChannels(streamNames);
+});
