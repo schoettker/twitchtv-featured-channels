@@ -75,3 +75,9 @@ h5 {
   margin-top: .5em;
   color: rgb(112, 106, 124);
 }
+
+@media (max-width: 640px) {
+  .container {
+    margin-top: 20vh;
+  }
+}
